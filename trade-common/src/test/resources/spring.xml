@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName">
+
+    <bean id="tradeMqProducer" class="org.sheng.trade.common.TradeMqProducer" init-method="init">
+        <property name="namesrvAddr" value="localhost:9876"/>
+        <property name="producerGroup" value="tradeMqProducerGroup"/>
+    </bean>
+
+    <bean id="tradeMessageProcessor" class="org.sheng.trade.common.TradeMessageProcessorImplTest"/>
+    <bean id="tradeMqConsumer" class="org.sheng.trade.common.consumer.TradeMqConsumer" init-method="init">
+        <property name="namesrvAddr" value="localhost:9876"/>
+        <property name="groupName" value="tradeMqConsumerGroup"/>
+        <property name="topic" value="test"/>
+        <property name="tag" value="test"/>
+        <property name="tradeMessageProcessor" ref="tradeMessageProcessor"/>
+    </bean>
+</beans>

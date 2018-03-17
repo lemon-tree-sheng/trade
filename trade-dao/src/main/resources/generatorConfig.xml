@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--driver class path-->
+    <classPathEntry
+            location="/Users/shengxingyue/.m2/repository/mysql/mysql-connector-java/5.1.44/mysql-connector-java-5.1.44.jar"/>
+
+    <context id="context" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+        <!--comment-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!--database connection-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/trade"
+                        userId="root"
+                        password="12345678">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+
+        <!--java model package-->
+        <javaModelGenerator targetPackage="org.sheng.trade.dao.entity"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--sqlmap xml-->
+        <sqlMapGenerator targetPackage="sqlmap" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!--java mapper interface-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="org.sheng.trade.dao.mapper"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!--table configuration-->
+        <table tableName="trade_goods" enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample=""
+               enableUpdateByExample="true">
+            <generatedKey column="goods_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="trade_coupon" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="" enableUpdateByExample="true"></table>
+        <table tableName="trade_user_money_log" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="" enableUpdateByExample="true"></table>
+        <table tableName="trade_goods_number_log" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="" enableUpdateByExample="true"></table>
+        <table tableName="trade_user" enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample=""
+               enableUpdateByExample="true">
+            <generatedKey column="user_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="trade_order" enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample=""
+               enableUpdateByExample="true"></table>
+        <table tableName="trade_pay" enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample=""
+               enableUpdateByExample="true"></table>
+    </context>
+</generatorConfiguration>
