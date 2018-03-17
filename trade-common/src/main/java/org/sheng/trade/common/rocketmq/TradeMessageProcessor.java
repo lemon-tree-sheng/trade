@@ -1,4 +1,4 @@
-package org.sheng.trade.common.consumer;
+package org.sheng.trade.common.rocketmq;
 
 import org.apache.rocketmq.common.message.MessageExt;
 

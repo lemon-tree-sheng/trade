@@ -1,4 +1,4 @@
-package org.sheng.trade.common.consumer;
+package org.sheng.trade.common.rocketmq;
 
 import com.google.common.collect.Lists;
 import lombok.Setter;
@@ -35,7 +35,7 @@ public class TradeMqConsumer {
     public void init() throws TradeMqException {
         // 参数校验
         if (StringUtils.isAnyEmpty(groupName, topic, tag)) {
-            throw new TradeMqException(String.format("consumer init error,参数有误。groupName:%s, topic:%s, tag:%s", groupName, topic, tag));
+            throw new TradeMqException(String.format("rocketmq init error,参数有误。groupName:%s, topic:%s, tag:%s", groupName, topic, tag));
         }
 
         mqConsumer = new DefaultMQPushConsumer(groupName);
@@ -48,11 +48,11 @@ public class TradeMqConsumer {
             TradeMessageListener tradeMessageListener = new TradeMessageListener(tradeMessageProcessor);
             mqConsumer.registerMessageListener(tradeMessageListener);
             mqConsumer.start();
-            log.debug("consumer started...");
+            log.debug("rocketmq started...");
 
             Lists.newArrayList();
         } catch (MQClientException e) {
-            throw new TradeMqException("consumer init error", e);
+            throw new TradeMqException("rocketmq init error", e);
         }
     }
 }

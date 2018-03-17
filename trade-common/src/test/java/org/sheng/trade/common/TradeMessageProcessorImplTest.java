@@ -3,7 +3,8 @@ package org.sheng.trade.common;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.junit.Test;
-import org.sheng.trade.common.consumer.TradeMessageProcessor;
+import org.sheng.trade.common.rocketmq.TradeMessageProcessor;
+import org.sheng.trade.common.rocketmq.TradeMqProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

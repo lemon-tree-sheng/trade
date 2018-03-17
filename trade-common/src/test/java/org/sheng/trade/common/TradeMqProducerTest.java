@@ -1,6 +1,7 @@
 package org.sheng.trade.common;
 
 import org.junit.Test;
+import org.sheng.trade.common.rocketmq.TradeMqProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
