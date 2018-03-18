@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
-       default-autowire="byName">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="tradeMqProducer" class="org.sheng.trade.common.rocketmq.TradeMqProducer" init-method="init">
         <property name="namesrvAddr" value="localhost:9876"/>
@@ -16,5 +15,12 @@
         <property name="topic" value="test"/>
         <property name="tag" value="test"/>
         <property name="tradeMessageProcessor" ref="tradeMessageProcessor"/>
+    </bean>
+
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate"></bean>
+    <bean id="userClient"  class="org.sheng.trade.common.proxy.RestClientProxyFactoryBean">
+        <property name="restTemplate" ref="restTemplate"></property>
+        <property name="serviceInterface" value="org.sheng.trade.common.facade.UserFacade"></property>
+        <property name="serverConfigEnum" value="USER"></property>
     </bean>
 </beans>

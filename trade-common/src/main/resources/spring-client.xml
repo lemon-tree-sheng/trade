@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate"></bean>
+    <bean id="userClient" class="org.sheng.trade.common.proxy.RestClientProxyFactoryBean">
+        <property name="restTemplate" ref="restTemplate"></property>
+        <property name="serviceInterface" value="org.sheng.trade.common.facade.UserFacade"></property>
+        <property name="serverConfigEnum" value="USER"></property>
+    </bean>
+
+    <bean id="orderClient" class="org.sheng.trade.common.proxy.RestClientProxyFactoryBean">
+        <property name="restTemplate" ref="restTemplate"></property>
+        <property name="serviceInterface" value="org.sheng.trade.common.facade.OrderFacade"></property>
+        <property name="serverConfigEnum" value="ORDER"></property>
+    </bean>
+
+    <bean id="couponClient" class="org.sheng.trade.common.proxy.RestClientProxyFactoryBean">
+        <property name="restTemplate" ref="restTemplate"></property>
+        <property name="serviceInterface" value="org.sheng.trade.common.facade.CouponFacade"></property>
+        <property name="serverConfigEnum" value="COUPON"></property>
+    </bean>
+
+    <bean id="payClient" class="org.sheng.trade.common.proxy.RestClientProxyFactoryBean">
+        <property name="restTemplate" ref="restTemplate"></property>
+        <property name="serviceInterface" value="org.sheng.trade.common.facade.PayFacade"></property>
+        <property name="serverConfigEnum" value="PAY"></property>
+    </bean>
+</beans>
