@@ -1,6 +1,7 @@
 package org.sheng.trade.common.facade;
 
 import org.sheng.trade.common.protocol.Result;
+import org.sheng.trade.common.protocol.user.UserChangeMoneyReq;
 import org.sheng.trade.common.protocol.user.UserQueryReq;
 import org.sheng.trade.common.protocol.user.UserQueryRes;
 
@@ -9,4 +10,6 @@ import org.sheng.trade.common.protocol.user.UserQueryRes;
  */
 public interface UserFacade {
     Result<UserQueryRes> queryUserById(UserQueryReq userQueryReq);
+
+    Result changeUserMoney(UserChangeMoneyReq userChangeMoneyReq);
 }
