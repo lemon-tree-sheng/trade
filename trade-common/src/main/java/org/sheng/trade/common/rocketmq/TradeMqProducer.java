@@ -8,6 +8,8 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.exception.RemotingException;
+import org.sheng.trade.common.constant.MQEnums;
+import org.sheng.trade.common.constant.MQEnums.TopicEnum;
 import org.sheng.trade.common.exception.TradeMqException;
 
 /**
@@ -43,8 +45,8 @@ public class TradeMqProducer {
         }
     }
 
-    public SendResult sendMsg(String topic, String tag, String msg) throws TradeMqException {
-        Message message = new Message(topic, tag, msg.getBytes());
+    public SendResult sendMsg(String topic, String tag, String keys, String msg) throws TradeMqException {
+        Message message = new Message(topic, tag, keys, msg.getBytes());
         SendResult sendResult;
         try {
             sendResult = mqProducer.send(message);
@@ -53,5 +55,9 @@ public class TradeMqProducer {
             throw new TradeMqException(e);
         }
         return sendResult;
+    }
+
+    public SendResult sendMsg(TopicEnum topicEnum, String keys, String msg) throws TradeMqException {
+        return sendMsg(topicEnum.getTopic(), topicEnum.getTag(), keys, msg);
     }
 }

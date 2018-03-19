@@ -14,6 +14,6 @@ public class TradeMqProducerTest extends BaseTest {
 
     @Test
     public void sendMsg() throws Exception {
-        tradeMqProducer.sendMsg("test", "test", "hello trade msg");
+        tradeMqProducer.sendMsg("test", "test", "test", "hello trade msg");
     }
 }

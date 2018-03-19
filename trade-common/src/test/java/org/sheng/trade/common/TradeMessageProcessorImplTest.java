@@ -18,7 +18,7 @@ public class TradeMessageProcessorImplTest extends BaseTest implements TradeMess
 
     @Test
     public void handleMessage() throws Exception {
-        tradeMqProducer.sendMsg("test", "test", "hello world!!!");
+        tradeMqProducer.sendMsg("test", "test", "test", "hello world!!!");
     }
 
     @Override

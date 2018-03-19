@@ -19,7 +19,7 @@ public class TradeCoupon implements Serializable {
 
     private String orderId;
 
-    private Integer isUsed;
+    private String isUsed;
 
     private Date usedTime;
 }
