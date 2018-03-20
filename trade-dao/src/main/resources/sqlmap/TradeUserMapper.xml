@@ -1,236 +1,239 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.sheng.trade.dao.mapper.TradeUserMapper" >
-  <resultMap id="BaseResultMap" type="org.sheng.trade.dao.entity.TradeUser" >
-    <id column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
-    <result column="user_mobile" property="userMobile" jdbcType="VARCHAR" />
-    <result column="user_score" property="userScore" jdbcType="INTEGER" />
-    <result column="user_reg_time" property="userRegTime" jdbcType="TIMESTAMP" />
-    <result column="user_money" property="userMoney" jdbcType="DECIMAL" />
-    <result column="user_name" property="userName" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+<mapper namespace="org.sheng.trade.dao.mapper.TradeUserMapper">
+    <resultMap id="BaseResultMap" type="org.sheng.trade.dao.entity.TradeUser">
+        <id column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="user_password" property="userPassword" jdbcType="VARCHAR"/>
+        <result column="user_mobile" property="userMobile" jdbcType="VARCHAR"/>
+        <result column="user_score" property="userScore" jdbcType="INTEGER"/>
+        <result column="user_reg_time" property="userRegTime" jdbcType="TIMESTAMP"/>
+        <result column="user_money" property="userMoney" jdbcType="DECIMAL"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     user_id, user_password, user_mobile, user_score, user_reg_time, user_money, user_name
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.sheng.trade.dao.entity.TradeUserExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from trade_user
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from trade_user
-    where user_id = #{userId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.sheng.trade.dao.entity.TradeUserExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from trade_user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from trade_user
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from trade_user
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="org.sheng.trade.dao.entity.TradeUserExample" >
-    delete from trade_user
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="org.sheng.trade.dao.entity.TradeUser" >
-    <selectKey resultType="java.lang.Integer" keyProperty="userId" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into trade_user (user_password, user_mobile, user_score, 
-      user_reg_time, user_money, user_name
-      )
-    values (#{userPassword,jdbcType=VARCHAR}, #{userMobile,jdbcType=VARCHAR}, #{userScore,jdbcType=INTEGER}, 
-      #{userRegTime,jdbcType=TIMESTAMP}, #{userMoney,jdbcType=DECIMAL}, #{userName,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="org.sheng.trade.dao.entity.TradeUser" >
-    <selectKey resultType="java.lang.Integer" keyProperty="userId" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into trade_user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userPassword != null" >
-        user_password,
-      </if>
-      <if test="userMobile != null" >
-        user_mobile,
-      </if>
-      <if test="userScore != null" >
-        user_score,
-      </if>
-      <if test="userRegTime != null" >
-        user_reg_time,
-      </if>
-      <if test="userMoney != null" >
-        user_money,
-      </if>
-      <if test="userName != null" >
-        user_name,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userPassword != null" >
-        #{userPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="userMobile != null" >
-        #{userMobile,jdbcType=VARCHAR},
-      </if>
-      <if test="userScore != null" >
-        #{userScore,jdbcType=INTEGER},
-      </if>
-      <if test="userRegTime != null" >
-        #{userRegTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="userMoney != null" >
-        #{userMoney,jdbcType=DECIMAL},
-      </if>
-      <if test="userName != null" >
-        #{userName,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="org.sheng.trade.dao.entity.TradeUserExample" resultType="java.lang.Integer" >
-    select count(*) from trade_user
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update trade_user
-    <set >
-      <if test="record.userId != null" >
-        user_id = #{record.userId,jdbcType=INTEGER},
-      </if>
-      <if test="record.userPassword != null" >
+    <delete id="deleteByExample" parameterType="org.sheng.trade.dao.entity.TradeUserExample">
+        delete from trade_user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="org.sheng.trade.dao.entity.TradeUser">
+        <selectKey resultType="java.lang.Integer" keyProperty="userId" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into trade_user (user_password, user_mobile, user_score,
+        user_reg_time, user_money, user_name
+        )
+        values (#{userPassword,jdbcType=VARCHAR}, #{userMobile,jdbcType=VARCHAR}, #{userScore,jdbcType=INTEGER},
+        #{userRegTime,jdbcType=TIMESTAMP}, #{userMoney,jdbcType=DECIMAL}, #{userName,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="org.sheng.trade.dao.entity.TradeUser">
+        <selectKey resultType="java.lang.Integer" keyProperty="userId" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into trade_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userPassword != null">
+                user_password,
+            </if>
+            <if test="userMobile != null">
+                user_mobile,
+            </if>
+            <if test="userScore != null">
+                user_score,
+            </if>
+            <if test="userRegTime != null">
+                user_reg_time,
+            </if>
+            <if test="userMoney != null">
+                user_money,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userPassword != null">
+                #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="userMobile != null">
+                #{userMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="userScore != null">
+                #{userScore,jdbcType=INTEGER},
+            </if>
+            <if test="userRegTime != null">
+                #{userRegTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userMoney != null">
+                #{userMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="org.sheng.trade.dao.entity.TradeUserExample"
+            resultType="java.lang.Integer">
+        select count(*) from trade_user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update trade_user
+        <set>
+            <if test="record.userId != null">
+                user_id = #{record.userId,jdbcType=INTEGER},
+            </if>
+            <if test="record.userPassword != null">
+                user_password = #{record.userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userMobile != null">
+                user_mobile = #{record.userMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userScore != null">
+                user_score = #{record.userScore,jdbcType=INTEGER},
+            </if>
+            <if test="record.userRegTime != null">
+                user_reg_time = #{record.userRegTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.userMoney != null">
+                user_money = #{record.userMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="record.userName != null">
+                user_name = #{record.userName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update trade_user
+        set user_id = #{record.userId,jdbcType=INTEGER},
         user_password = #{record.userPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userMobile != null" >
         user_mobile = #{record.userMobile,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userScore != null" >
         user_score = #{record.userScore,jdbcType=INTEGER},
-      </if>
-      <if test="record.userRegTime != null" >
         user_reg_time = #{record.userRegTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.userMoney != null" >
         user_money = #{record.userMoney,jdbcType=DECIMAL},
-      </if>
-      <if test="record.userName != null" >
-        user_name = #{record.userName,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update trade_user
-    set user_id = #{record.userId,jdbcType=INTEGER},
-      user_password = #{record.userPassword,jdbcType=VARCHAR},
-      user_mobile = #{record.userMobile,jdbcType=VARCHAR},
-      user_score = #{record.userScore,jdbcType=INTEGER},
-      user_reg_time = #{record.userRegTime,jdbcType=TIMESTAMP},
-      user_money = #{record.userMoney,jdbcType=DECIMAL},
-      user_name = #{record.userName,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.sheng.trade.dao.entity.TradeUser" >
-    update trade_user
-    <set >
-      <if test="userPassword != null" >
-        user_password = #{userPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="userMobile != null" >
-        user_mobile = #{userMobile,jdbcType=VARCHAR},
-      </if>
-      <if test="userScore != null" >
-        user_score = #{userScore,jdbcType=INTEGER},
-      </if>
-      <if test="userRegTime != null" >
-        user_reg_time = #{userRegTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="userMoney != null" >
-        user_money = #{userMoney,jdbcType=DECIMAL},
-      </if>
-      <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where user_id = #{userId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="org.sheng.trade.dao.entity.TradeUser" >
+        user_name = #{record.userName,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="org.sheng.trade.dao.entity.TradeUser">
+        update trade_user
+        <set>
+            <if test="userPassword != null">
+                user_password = #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="userMobile != null">
+                user_mobile = #{userMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="userScore != null">
+                user_score = #{userScore,jdbcType=INTEGER},
+            </if>
+            <if test="userRegTime != null">
+                user_reg_time = #{userRegTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userMoney != null">
+                user_money = #{userMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="org.sheng.trade.dao.entity.TradeUser">
     update trade_user
     set user_password = #{userPassword,jdbcType=VARCHAR},
       user_mobile = #{userMobile,jdbcType=VARCHAR},
@@ -240,4 +243,15 @@
       user_name = #{userName,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+    <update id="reduceUserMoney" parameterType="org.sheng.trade.dao.entity.TradeUser">
+      UPDATE trade_user
+      set user_money = user_money - #{userMoney, jdbcType=DECIMAL}
+      where user_id = #{userId,jdbcType=INTEGER} and user_money >= #{userMoney, jdbcType=DECIMAL}
+    </update>
+    <update id="addUserMoney" parameterType="org.sheng.trade.dao.entity.TradeUser">
+       UPDATE trade_user
+      set user_money = user_money + #{userMoney, jdbcType=DECIMAL}
+      where user_id = #{userId,jdbcType=INTEGER}
+    </update>
+
 </mapper>

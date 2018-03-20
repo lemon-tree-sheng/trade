@@ -15,6 +15,6 @@ import java.math.BigDecimal;
 public class UserChangeMoneyReq {
     private Integer userId;
     private BigDecimal userMoney;
-    private String moneyLogType;
+    private Integer moneyLogType;
     private String orderId;
 }

@@ -1,5 +1,6 @@
 package org.sheng.trade.user.api;
 
+import org.apache.commons.lang3.StringUtils;
 import org.sheng.trade.common.constant.TradeEnums.ResponseCode;
 import org.sheng.trade.common.facade.UserFacade;
 import org.sheng.trade.common.protocol.Result;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.math.BigDecimal;
 
 /**
  * @author shengxingyue, created on 2018/3/17
@@ -39,7 +42,17 @@ public class UserApi implements UserFacade {
         return result;
     }
 
-    public Result changeUserMoney(UserChangeMoneyReq userChangeMoneyReq) {
-        return null;
+    @PostMapping("/changeUserMoney")
+    public Result changeUserMoney(@RequestBody UserChangeMoneyReq userChangeMoneyReq) {
+        Result result;
+        boolean isReqValid = userChangeMoneyReq != null && userChangeMoneyReq.getUserId() != null
+                && userChangeMoneyReq.getUserMoney() != null && (userChangeMoneyReq.getUserMoney().compareTo(BigDecimal.ZERO) > 0)
+                && StringUtils.isNotEmpty(userChangeMoneyReq.getMoneyLogType()) && StringUtils.isNotEmpty(userChangeMoneyReq.getOrderId());
+        if (!isReqValid) {
+            result = Result.fail(ResponseCode.FAIL.getCode());
+        } else {
+            result = userService.changeUserMoney(userChangeMoneyReq);
+        }
+        return result;
     }
 }

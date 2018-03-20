@@ -5,18 +5,18 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class TradeUserMoneyLog extends TradeUserMoneyLogKey implements Serializable {
-    private BigDecimal userMonny;
+    private BigDecimal userMoney;
 
     private Date createTime;
 
     private static final long serialVersionUID = 1L;
 
-    public BigDecimal getUserMonny() {
-        return userMonny;
+    public BigDecimal getUserMoney() {
+        return userMoney;
     }
 
-    public void setUserMonny(BigDecimal userMonny) {
-        this.userMonny = userMonny;
+    public void setUserMoney(BigDecimal userMoney) {
+        this.userMoney = userMoney;
     }
 
     public Date getCreateTime() {
@@ -33,7 +33,7 @@ public class TradeUserMoneyLog extends TradeUserMoneyLogKey implements Serializa
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", userMonny=").append(userMonny);
+        sb.append(", userMoney=").append(userMoney);
         sb.append(", createTime=").append(createTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
@@ -55,7 +55,7 @@ public class TradeUserMoneyLog extends TradeUserMoneyLogKey implements Serializa
         return (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
             && (this.getOrderId() == null ? other.getOrderId() == null : this.getOrderId().equals(other.getOrderId()))
             && (this.getMoneyLogType() == null ? other.getMoneyLogType() == null : this.getMoneyLogType().equals(other.getMoneyLogType()))
-            && (this.getUserMonny() == null ? other.getUserMonny() == null : this.getUserMonny().equals(other.getUserMonny()))
+            && (this.getUserMoney() == null ? other.getUserMoney() == null : this.getUserMoney().equals(other.getUserMoney()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()));
     }
 
@@ -66,7 +66,7 @@ public class TradeUserMoneyLog extends TradeUserMoneyLogKey implements Serializa
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getOrderId() == null) ? 0 : getOrderId().hashCode());
         result = prime * result + ((getMoneyLogType() == null) ? 0 : getMoneyLogType().hashCode());
-        result = prime * result + ((getUserMonny() == null) ? 0 : getUserMonny().hashCode());
+        result = prime * result + ((getUserMoney() == null) ? 0 : getUserMoney().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         return result;
     }

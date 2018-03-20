@@ -5,7 +5,7 @@
     <id column="user_id" property="userId" jdbcType="INTEGER" />
     <id column="order_id" property="orderId" jdbcType="VARCHAR" />
     <id column="money_log_type" property="moneyLogType" jdbcType="INTEGER" />
-    <result column="user_monny" property="userMonny" jdbcType="DECIMAL" />
+    <result column="user_monny" property="userMoney" jdbcType="DECIMAL" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -105,9 +105,9 @@
   </delete>
   <insert id="insert" parameterType="org.sheng.trade.dao.entity.TradeUserMoneyLog" >
     insert into trade_user_money_log (user_id, order_id, money_log_type, 
-      user_monny, create_time)
+      user_money, create_time)
     values (#{userId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{moneyLogType,jdbcType=INTEGER}, 
-      #{userMonny,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP})
+      #{userMoney,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.sheng.trade.dao.entity.TradeUserMoneyLog" >
     insert into trade_user_money_log
@@ -121,7 +121,7 @@
       <if test="moneyLogType != null" >
         money_log_type,
       </if>
-      <if test="userMonny != null" >
+      <if test="userMoney != null" >
         user_monny,
       </if>
       <if test="createTime != null" >
@@ -138,8 +138,8 @@
       <if test="moneyLogType != null" >
         #{moneyLogType,jdbcType=INTEGER},
       </if>
-      <if test="userMonny != null" >
-        #{userMonny,jdbcType=DECIMAL},
+      <if test="userMoney != null" >
+        #{userMoney,jdbcType=DECIMAL},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -164,8 +164,8 @@
       <if test="record.moneyLogType != null" >
         money_log_type = #{record.moneyLogType,jdbcType=INTEGER},
       </if>
-      <if test="record.userMonny != null" >
-        user_monny = #{record.userMonny,jdbcType=DECIMAL},
+      <if test="record.userMoney != null" >
+        user_monny = #{record.userMoney,jdbcType=DECIMAL},
       </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -180,7 +180,7 @@
     set user_id = #{record.userId,jdbcType=INTEGER},
       order_id = #{record.orderId,jdbcType=VARCHAR},
       money_log_type = #{record.moneyLogType,jdbcType=INTEGER},
-      user_monny = #{record.userMonny,jdbcType=DECIMAL},
+      user_money = #{record.userMoney,jdbcType=DECIMAL},
       create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -189,8 +189,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="org.sheng.trade.dao.entity.TradeUserMoneyLog" >
     update trade_user_money_log
     <set >
-      <if test="userMonny != null" >
-        user_monny = #{userMonny,jdbcType=DECIMAL},
+      <if test="userMoney != null" >
+        user_monny = #{userMoney,jdbcType=DECIMAL},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -202,7 +202,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="org.sheng.trade.dao.entity.TradeUserMoneyLog" >
     update trade_user_money_log
-    set user_monny = #{userMonny,jdbcType=DECIMAL},
+    set user_money = #{userMoney,jdbcType=DECIMAL},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where user_id = #{userId,jdbcType=INTEGER}
       and order_id = #{orderId,jdbcType=VARCHAR}
