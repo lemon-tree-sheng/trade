@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="order-order-cancel-processor" class="org.sheng.trade.order.mq.OrderCancelProcessor"/>
+    <bean id="tradeMqConsumer" class="org.sheng.trade.common.rocketmq.TradeMqConsumer" init-method="init">
+        <property name="namesrvAddr" value="localhost:9876"/>
+        <property name="groupName" value="order-order-cancel-group"/>
+        <property name="topic" value="orderTopic"/>
+        <property name="tag" value="cancel"/>
+        <property name="tradeMessageProcessor" ref="order-order-cancel-processor"/>
+    </bean>
+
+    <!--todo 订单支付成功 consumer 配置-->
+    <!--<bean id="order-order-cancel-processor" class="org.sheng.trade.order.mq.OrderCancelProcessor"/>-->
+    <bean id="payMqConsumer" class="org.sheng.trade.common.rocketmq.TradeMqConsumer" init-method="init">
+        <property name="namesrvAddr" value="localhost:9876"/>
+        <property name="groupName" value="pay-success-group"/>
+        <property name="topic" value="payTopic"/>
+        <property name="tag" value="paid"/>
+        <!--<property name="tradeMessageProcessor" ref="order-order-cancel-processor"/>-->
+    </bean>
+</beans>

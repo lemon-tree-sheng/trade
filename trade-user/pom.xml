@@ -12,16 +12,6 @@
     <artifactId>trade-user</artifactId>
 
     <dependencies>
-        <!--hibernate-validator-->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.el</artifactId>
-            <version>3.0.1-b09</version>
-        </dependency>
         <!--trade-common-->
         <dependency>
             <groupId>org.sheng</groupId>

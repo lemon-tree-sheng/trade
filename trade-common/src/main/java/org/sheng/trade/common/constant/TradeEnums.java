@@ -13,7 +13,8 @@ public interface TradeEnums {
         PAY("localhost", "pay", 8080),
         ORDER("localhost", "order", 8081),
         COUPON("localhost", "coupon", 8082),
-        USER("localhost", "user", 8083);
+        USER("localhost", "user", 8083),
+        GOODS("localhost", "goods", 8084);
         private String serverHost;
         private String contextPath;
         private Integer port;
@@ -96,6 +97,17 @@ public interface TradeEnums {
     enum UserMoneyLogTypeEnum {
         PAID("1", "订单付款"),
         REFUND("2", "订单退款");
+        private String code;
+        private String desc;
+
+    }
+
+    @AllArgsConstructor
+    @Getter
+    enum UseOrUnUseEnum {
+        USED("1", " 已使用"),
+        UN_USED("0", "未使用");
+
         private String code;
         private String desc;
 

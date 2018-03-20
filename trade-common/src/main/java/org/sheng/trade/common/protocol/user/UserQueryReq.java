@@ -1,10 +1,10 @@
 package org.sheng.trade.common.protocol.user;
 
+import com.sun.istack.internal.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -15,6 +15,5 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class UserQueryReq implements Serializable {
 
-    @NotNull(message = "88888888888不能为空")
     private Integer userId;
 }

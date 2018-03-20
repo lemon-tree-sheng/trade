@@ -47,7 +47,7 @@ public class UserApi implements UserFacade {
         Result result;
         boolean isReqValid = userChangeMoneyReq != null && userChangeMoneyReq.getUserId() != null
                 && userChangeMoneyReq.getUserMoney() != null && (userChangeMoneyReq.getUserMoney().compareTo(BigDecimal.ZERO) > 0)
-                && StringUtils.isNotEmpty(userChangeMoneyReq.getMoneyLogType()) && StringUtils.isNotEmpty(userChangeMoneyReq.getOrderId());
+                && StringUtils.isNotEmpty(userChangeMoneyReq.getMoneyLogType().toString()) && StringUtils.isNotEmpty(userChangeMoneyReq.getOrderId());
         if (!isReqValid) {
             result = Result.fail(ResponseCode.FAIL.getCode());
         } else {

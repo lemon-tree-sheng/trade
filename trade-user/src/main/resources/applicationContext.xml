@@ -7,10 +7,7 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <import resource="spring-dao.xml"/>
+    <import resource="mq/mq.xml"/>
     <context:component-scan base-package="org.sheng.trade.user"/>
-    <mvc:annotation-driven validator="validator"/>
-
-    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
-    </bean>
+    <mvc:annotation-driven/>
 </beans>

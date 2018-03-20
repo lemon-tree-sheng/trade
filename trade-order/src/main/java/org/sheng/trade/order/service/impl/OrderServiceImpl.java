@@ -99,7 +99,7 @@ public class OrderServiceImpl implements OrderService {
             // 2. 扣余额
             boolean needUserMoneyService = orderConfirmReq.getMoneyPaid().compareTo(BigDecimal.ZERO) > BigDecimal.ZERO.intValue();
             if (needUserMoneyService) {
-                UserChangeMoneyReq userChangeMoneyReq = new UserChangeMoneyReq(orderConfirmReq.getUserId(), orderConfirmReq.getMoneyPaid(), UserMoneyLogTypeEnum.PAID.getCode(), orderId);
+                UserChangeMoneyReq userChangeMoneyReq = new UserChangeMoneyReq(orderConfirmReq.getUserId(), orderConfirmReq.getMoneyPaid(), Integer.parseInt(UserMoneyLogTypeEnum.PAID.getCode()), orderId);
                 Result userChangeMoneyRes = userClient.changeUserMoney(userChangeMoneyReq);
                 log.info("扣减用户余额 orderId:{} | req:{} | res:{}", orderId, userChangeMoneyReq, userChangeMoneyRes);
                 if (userChangeMoneyRes.getSuccess() == false) {

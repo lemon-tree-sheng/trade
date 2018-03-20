@@ -48,7 +48,7 @@
         </javaClientGenerator>
 
         <!--table configuration-->
-        <table tableName="trade_goods" enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample=""
+        <!--<table tableName="trade_goods" enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample=""
                enableUpdateByExample="true">
             <generatedKey column="goods_id" sqlStatement="MySql" identity="true"/>
         </table>
@@ -65,6 +65,8 @@
         <table tableName="trade_order" enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample=""
                enableUpdateByExample="true"></table>
         <table tableName="trade_pay" enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample=""
+               enableUpdateByExample="true"></table>-->
+        <table tableName="trade_pay_message_temp" enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample=""
                enableUpdateByExample="true"></table>
     </context>
 </generatorConfiguration>

@@ -315,7 +315,7 @@ public class TradePayExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsPaidEqualTo(Integer value) {
+        public Criteria andIsPaidEqualTo(String value) {
             addCriterion("is_paid =", value, "isPaid");
             return (Criteria) this;
         }
